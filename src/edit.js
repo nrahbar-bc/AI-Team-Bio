@@ -13,9 +13,9 @@ const AIQuery = ({ attributes }) => {
 		showPrediction,
 	} = attributes;
 	let q = `Write a biography in ${language} about `;
-	q += homeTeam ? homeTeam : '';
+	q += homeTeam ? `"${homeTeam}"` : '';
 	q += homeTeam && awayTeam ? ' and ' : '';
-	q += awayTeam ? awayTeam : '';
+	q += awayTeam ? `"${awayTeam}"` : '';
 	q += ` in ${paragraphCount} paragraphs`;
 	q += homeTeam && awayTeam ? ' separately' : '';
 	q += showInfographicContent ? ' with infography about the teams.' : '.';
