@@ -4,14 +4,55 @@
   "name": "bc-blocks/ai-team-bio",
   "version": "0.1.0",
   "title": "AI Team Bio",
-  "category": "widgets",
-  "icon": "smiley",
+  "category": "text",
   "description": "Team Biography Generator Powered By ChatGPT.",
   "supports": {
-    "html": false
+    "html": false,
+    "anchor": true,
+    "reusable": false,
+    "align": true,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": false
+    },
+    "color": {
+      "text": true,
+      "background": true,
+      "link": true,
+      "enableContrastChecker": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
   },
   "textdomain": "ai-team-bio",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "style": "file:./style-index.css",
+  "attributes": {
+    "homeTeam": {
+      "type": "string"
+    },
+    "awayTeam": {
+      "type": "string"
+    },
+    "paragraphCount": {
+      "type": "string",
+      "default": "1"
+    },
+    "showInfographicContent": {
+      "type": "boolean",
+      "default": false
+    },
+    "language": {
+      "type": "string",
+      "default": "English"
+    },
+    "showPrediction": {
+      "type": "boolean",
+      "default": false
+    }
+  }
 }
