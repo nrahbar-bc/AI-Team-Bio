@@ -1,0 +1,24 @@
+{
+    "stylelint.configFile": "",
+    "stylelint.snippet": [
+        "css",
+        "less",
+        "postcss",
+        "scss"
+    ],
+    "stylelint.validate": [
+        "css",
+        "less",
+        "postcss",
+        "scss"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    },
+    "eslint.validate": ["javascript"],
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": true,
+    "editor.formatOnSave": true,
+}
