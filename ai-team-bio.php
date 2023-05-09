@@ -22,5 +22,9 @@ add_action('init', 'bcBlocksAiTeamBioBlockInit');
 
 function bcBlocksAiTeamBioBlockGenerate($attributes)
 {
-	return '<p>The Content Will Generate Here!!!</p>' . '<h4>Attributes: </h4><pre class="custom-debug">' . print_r($attributes, true) . '</pre>';
+	if (!empty($attributes['finalAnswer'])) {
+		return '<p>The Content Will Generate Here!!!</p>' . nl2br($attributes['finalAnswer']);
+	} else {
+		return '<div class="alert alert-danger" role="alert">Please set the parameters first and then generate the content.</div>';
+	}
 }

@@ -50,12 +50,15 @@
 			"type": "string",
 			"default": "English"
 		},
-		"showPrediction": {
+		"showHead2Head": {
 			"type": "boolean",
 			"default": false
 		},
 		"finalQuery":{
 			"type":"string"
+		},
+		"finalAnswer":{
+			"type": "string"
 		}
 	}
 }

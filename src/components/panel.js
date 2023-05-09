@@ -1,5 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { getChatGPTContent} from "./api-chatGPT";
+import { getChatGPTContent } from './api-chatGPT';
 import {
 	Panel,
 	PanelBody,
@@ -8,6 +8,7 @@ import {
 	SelectControl,
 	CheckboxControl,
 	Button,
+	ButtonGroup,
 } from '@wordpress/components';
 
 const BlockSettings = ({ attributes, setAttributes }) => {
@@ -69,7 +70,7 @@ const ContentSettings = ({ attributes, setAttributes }) => {
 };
 
 const ExtraSettings = ({ attributes, setAttributes }) => {
-	const { language, showPrediction } = attributes;
+	const { language, showHead2Head } = attributes;
 	const languages = [
 		{ label: 'English', value: 'English' },
 		{ label: 'Danish', value: 'Danish' },
@@ -79,8 +80,8 @@ const ExtraSettings = ({ attributes, setAttributes }) => {
 		{ label: 'Farsi', value: 'Farsi' },
 		{ label: 'Serbian', value: 'Serbian' },
 	];
-	const onShowPredictionChange = (newShowPrediction) => {
-		setAttributes({ showPrediction: newShowPrediction });
+	const onShowHead2HeadChange = (newshowHead2Head) => {
+		setAttributes({ showHead2Head: newshowHead2Head });
 	};
 	const onLanguageChange = (newLanguage) => {
 		setAttributes({ language: newLanguage });
@@ -89,9 +90,9 @@ const ExtraSettings = ({ attributes, setAttributes }) => {
 		<PanelBody title="3. Extra Settings" initialOpen={false}>
 			<PanelRow>Extra Information</PanelRow>
 			<CheckboxControl
-				label="Show the prediction"
-				checked={showPrediction}
-				onChange={onShowPredictionChange}
+				label="Show the head to head history"
+				checked={showHead2Head}
+				onChange={onShowHead2HeadChange}
 			/>
 			<SelectControl
 				label="Content language"
@@ -111,8 +112,9 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 		awayTeam,
 		paragraphCount,
 		showInfographicContent,
-		showPrediction,
+		showHead2Head,
 		finalQuery,
+		finalAnswer,
 	} = attributes;
 
 	const GenerateContent = () => {
@@ -124,16 +126,35 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 		q += homeTeam && awayTeam ? ' separately' : '';
 		q += showInfographicContent ? ' with infography about the teams.' : '.';
 		q +=
-			homeTeam && awayTeam && showPrediction
-				? " What is the result's prediction in a match between these teams. Also give some head to head history for the teams."
+			homeTeam && awayTeam && showHead2Head
+				? ' Also give some head to head history for the teams at the end.'
 				: '';
 		setAttributes({ finalQuery: q });
+		getChatGPTContent(attributes, setAttributes).then((answer) => {
+			setAttributes({ finalAnswer: answer.choices[0].text });
+		});
+	};
+
+	const DeleteContent = () => {
+		setAttributes({ finalAnswer: '' });
 	};
 	return (
-		<PanelBody title="4. Generate Content" initialOpen={true}>
-			<Button icon="upload" variant="primary" onClick={getChatGPTContent}>
-				Generate!!
-			</Button>
+		<PanelBody title="4. Generate Content" initialOpen={false}>
+			<ButtonGroup>
+				<Button
+					icon="upload"
+					variant="primary"
+					onClick={GenerateContent}
+					text="Generate"
+				/>
+				<Button
+					icon="trash"
+					variant="primary"
+					onClick={DeleteContent}
+					isDestructive
+					text="Delete"
+				/>
+			</ButtonGroup>
 		</PanelBody>
 	);
 };
