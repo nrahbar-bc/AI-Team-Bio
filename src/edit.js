@@ -29,12 +29,14 @@ export default function Edit(props) {
 	return (
 		<div {...useBlockProps()}>
 			<PanelOptions {...props} />
-			<p>
-				{__(
-					'AI Team Bio – set the parameters on sidebar!',
-					'ai-team-bio'
-				)}
-			</p>
+			{!props.attributes.finalQuery && (
+				<p>
+					{__(
+						'AI Team Bio – set the parameters on sidebar!',
+						'ai-team-bio'
+					)}
+				</p>
+			)}
 			<AIQuery {...props} />
 		</div>
 	);
