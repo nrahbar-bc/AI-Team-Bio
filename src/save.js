@@ -1,8 +1,14 @@
-import { useBlockProps } from '@wordpress/block-editor';
-export default function save() {
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+export default function save({ attributes }) {
+	const { finalQuery } = attributes;
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'AI Team Bio – hello from the saved content!' }
-		</p>
+		<>
+			{!finalQuery && (
+				<p {...useBlockProps.save()}>
+					{'AI Team Bio – hello from the saved content!'}
+				</p>
+			)}
+			<RichText.Content value={finalQuery} />
+		</>
 	);
 }

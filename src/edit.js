@@ -18,7 +18,12 @@ const AIQuery = ({ attributes, setAttributes }) => {
 						'ai-team-bio'
 					)}
 				</h3>
-				<RichText value={finalQuery} onChange={onFinalQueryChange} />
+				<RichText
+					allowedFormats={[]}
+					value={finalQuery}
+					tagName="p"
+					onChange={onFinalQueryChange}
+				/>
 			</>
 		);
 	}
