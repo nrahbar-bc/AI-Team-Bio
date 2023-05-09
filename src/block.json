@@ -53,6 +53,9 @@
 		"showPrediction": {
 			"type": "boolean",
 			"default": false
+		},
+		"finalQuery":{
+			"type":"string"
 		}
 	}
 }

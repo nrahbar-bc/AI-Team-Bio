@@ -6,6 +6,7 @@ import {
 	TextControl,
 	SelectControl,
 	CheckboxControl,
+	Button,
 } from '@wordpress/components';
 
 const BlockSettings = ({ attributes, setAttributes }) => {
@@ -17,7 +18,7 @@ const BlockSettings = ({ attributes, setAttributes }) => {
 		setAttributes({ awayTeam: newAway });
 	};
 	return (
-		<PanelBody title="Block Settings" initialOpen={false}>
+		<PanelBody title="1. Block Settings" initialOpen={false}>
 			<PanelRow>Teams Information</PanelRow>
 			<TextControl
 				label="Home Team Name"
@@ -42,7 +43,7 @@ const ContentSettings = ({ attributes, setAttributes }) => {
 		setAttributes({ showInfographicContent: newInfographicContent });
 	};
 	return (
-		<PanelBody title="Content Settings" initialOpen={false}>
+		<PanelBody title="2. Content Settings" initialOpen={false}>
 			<PanelRow>Content Information</PanelRow>
 			<SelectControl
 				label="How many paragraph for the Biography"
@@ -84,7 +85,7 @@ const ExtraSettings = ({ attributes, setAttributes }) => {
 		setAttributes({ language: newLanguage });
 	};
 	return (
-		<PanelBody title="Extra Settings" initialOpen={false}>
+		<PanelBody title="3. Extra Settings" initialOpen={false}>
 			<PanelRow>Extra Information</PanelRow>
 			<CheckboxControl
 				label="Show the prediction"
@@ -102,6 +103,40 @@ const ExtraSettings = ({ attributes, setAttributes }) => {
 	);
 };
 
+const GenerateSection = ({ attributes, setAttributes }) => {
+	const {
+		language,
+		homeTeam,
+		awayTeam,
+		paragraphCount,
+		showInfographicContent,
+		showPrediction,
+		finalQuery,
+	} = attributes;
+
+	const GenerateContent = () => {
+		let q = `Write a biography in ${language} about `;
+		q += homeTeam ? `"${homeTeam}"` : '';
+		q += homeTeam && awayTeam ? ' and ' : '';
+		q += awayTeam ? `"${awayTeam}"` : '';
+		q += ` in ${paragraphCount} paragraphs`;
+		q += homeTeam && awayTeam ? ' separately' : '';
+		q += showInfographicContent ? ' with infography about the teams.' : '.';
+		q +=
+			homeTeam && awayTeam && showPrediction
+				? " What is the result's prediction in a match between these teams. Also give some head to head history for the teams."
+				: '';
+		setAttributes({ finalQuery: q });
+	};
+	return (
+		<PanelBody title="4. Generate Content" initialOpen={true}>
+			<Button icon="upload" variant="primary" onClick={GenerateContent}>
+				Generate!!
+			</Button>
+		</PanelBody>
+	);
+};
+
 export const PanelOptions = (props) => {
 	return (
 		<InspectorControls>
@@ -113,6 +148,9 @@ export const PanelOptions = (props) => {
 			</Panel>
 			<Panel>
 				<ExtraSettings {...props} />
+			</Panel>
+			<Panel>
+				<GenerateSection {...props} />
 			</Panel>
 		</InspectorControls>
 	);
