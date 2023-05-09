@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       AI Team Bio
  * Description:       Team Biography Generator Powered By ChatGPT
@@ -9,11 +10,17 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       ai-team-bio
- *
- * @package           create-block
  */
 
-function bc_blocks_ai_team_bio_block_init() {
-	register_block_type( __DIR__ . '/build' );
+function bcBlocksAiTeamBioBlockInit()
+{
+	register_block_type_from_metadata(__DIR__ . '/build', [
+		'render_callback' => 'bcBlocksAiTeamBioBlockGenerate'
+	]);
 }
-add_action( 'init', 'bc_blocks_ai_team_bio_block_init' );
+add_action('init', 'bcBlocksAiTeamBioBlockInit');
+
+function bcBlocksAiTeamBioBlockGenerate($attributes)
+{
+	return '<p>The Content Will Generate Here!!!</p>' . '<h4>Attributes: </h4><pre class="custom-debug">' . print_r($attributes, true) . '</pre>';
+}
