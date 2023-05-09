@@ -1,4 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
+import { getChatGPTContent} from "./api-chatGPT";
 import {
 	Panel,
 	PanelBody,
@@ -130,7 +131,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 	};
 	return (
 		<PanelBody title="4. Generate Content" initialOpen={true}>
-			<Button icon="upload" variant="primary" onClick={GenerateContent}>
+			<Button icon="upload" variant="primary" onClick={getChatGPTContent}>
 				Generate!!
 			</Button>
 		</PanelBody>
