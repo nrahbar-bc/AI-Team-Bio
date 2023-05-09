@@ -8,8 +8,17 @@ const AIQuery = ({ attributes }) => {
 
 	return (
 		<>
-			<h3>{__('We will ask this from the ChatGPT:', 'ai-team-bio')}</h3>
-			<p>{finalQuery}</p>
+			{finalQuery && (
+				<>
+					<h3>
+						{__(
+							'We will ask this from the ChatGPT:',
+							'ai-team-bio'
+						)}
+					</h3>
+					<p>{finalQuery}</p>
+				</>
+			)}
 			{finalAnswer && <div>{finalAnswer}</div>}
 		</>
 	);

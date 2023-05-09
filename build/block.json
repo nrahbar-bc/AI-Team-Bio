@@ -55,7 +55,7 @@
       "default": false
     },
     "finalQuery": {
-      "type": "string"
+      "type": "array"
     },
     "finalAnswer": {
       "type": "string"

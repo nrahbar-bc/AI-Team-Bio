@@ -118,20 +118,34 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	const GenerateContent = () => {
-		let q = `Write a biography in ${language} about `;
-		q += homeTeam ? `"${homeTeam}"` : '';
-		q += homeTeam && awayTeam ? ' and ' : '';
-		q += awayTeam ? `"${awayTeam}"` : '';
-		q += ` in ${paragraphCount} paragraphs`;
-		q += homeTeam && awayTeam ? ' separately' : '';
-		q += showInfographicContent ? ' with infography about the teams.' : '.';
-		q +=
-			homeTeam && awayTeam && showHead2Head
-				? ' Also give some head to head history for the teams at the end.'
-				: '';
-		setAttributes({ finalQuery: q });
+		const queries = [];
+		if (homeTeam)
+			queries.push(
+				`Write a biography in ${language} about "${homeTeam}" in ${paragraphCount} paragraphs.`
+			);
+		if (homeTeam && showInfographicContent)
+			queries.push(
+				`Write infography in ${language} about "${homeTeam}".`
+			);
+		if (awayTeam)
+			queries.push(
+				`Write a biography in ${language} about "${awayTeam}" in ${paragraphCount} paragraphs.`
+			);
+		if (awayTeam && showInfographicContent)
+			queries.push(
+				`Write infography in ${language} about "${awayTeam}".`
+			);
+		if (homeTeam && awayTeam && showHead2Head)
+			queries.push(
+				`some head to head history in ${language} between "${homeTeam}" and "${awayTeam}".`
+			);
+		setAttributes({ finalQuery: queries });
 		getChatGPTContent(attributes, setAttributes).then((answer) => {
-			setAttributes({ finalAnswer: answer.choices[0].text });
+			let finalChoice = '';
+			answer.choices.forEach((choice) => {
+				finalChoice += choice.text;
+			});
+			setAttributes({ finalAnswer: finalChoice });
 		});
 	};
 

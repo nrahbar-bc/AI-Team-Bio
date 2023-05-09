@@ -1,6 +1,6 @@
 export const getChatGPTContent = async (attributes) => {
 	try {
-		const { finalQuery, finalAnswer } = attributes;
+		const { finalQuery } = attributes;
 		const response = await fetch('https://api.openai.com/v1/completions', {
 			method: 'POST',
 			headers: {
@@ -19,7 +19,6 @@ export const getChatGPTContent = async (attributes) => {
 		const answer = await response.json();
 		return answer;
 	} catch (error) {
-		console.error(error);
 		return error;
 	}
 };
