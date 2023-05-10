@@ -136,6 +136,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 
 	const GenerateContent = () => {
 		setLoading(true);
+		setIsDeleting(false);
 
 		const queries = [];
 		if (homeTeam)
@@ -171,6 +172,8 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 
 	const DeleteContent = () => {
 		setIsDeleting(true);
+		setLoading(false);
+
 		setTimeout(() => {
 			setIsDeleting(false);
 			setAttributes({ finalAnswer: '' });
