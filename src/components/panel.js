@@ -191,7 +191,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 							? __('Generating…', 'ai-team-bio')
 							: __('Generate', 'ai-team-bio')
 					}
-					disabled={loading}
+					disabled={loading || isDeleting}
 					isBusy={loading}
 				/>
 				{isDeleting ? (
@@ -209,6 +209,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 						onClick={DeleteContent}
 						isDestructive
 						text={__('Delete', 'ai-team-bio')}
+						disabled={loading || isDeleting}
 					/>
 				)}
 			</ButtonGroup>
