@@ -5,8 +5,7 @@ export const getChatGPTContent = async (attributes) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization:
-					'Bearer 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',
+				Authorization:'Bearer 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',
 			},
 			body: JSON.stringify({
 				model: 'text-davinci-003',
