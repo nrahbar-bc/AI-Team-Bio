@@ -204,6 +204,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 						isBusy
 						isDestructive
 						text={__('Deleting…', 'ai-team-bio')}
+						disabled
 					/>
 				) : (
 					<Button
