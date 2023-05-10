@@ -192,6 +192,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 							: __('Generate', 'ai-team-bio')
 					}
 					disabled={loading}
+					isBusy={loading}
 				/>
 				{isDeleting ? (
 					<Button
