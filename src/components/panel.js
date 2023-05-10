@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { InspectorControls } from '@wordpress/block-editor';
 import { getChatGPTContent } from './api-chatGPT';
 import {
@@ -106,6 +107,9 @@ const ExtraSettings = ({ attributes, setAttributes }) => {
 };
 
 const GenerateSection = ({ attributes, setAttributes }) => {
+	const [loading, setLoading] = useState(false);
+	const [isDeleting, setIsDeleting] = useState(false);
+
 	const {
 		language,
 		homeTeam,
@@ -118,6 +122,8 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 	} = attributes;
 
 	const GenerateContent = () => {
+		setLoading(true);
+
 		const queries = [];
 		if (homeTeam)
 			queries.push(
@@ -146,28 +152,40 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 				finalChoice += choice.text;
 			});
 			setAttributes({ finalAnswer: finalChoice });
+			setLoading(false);
 		});
 	};
 
 	const DeleteContent = () => {
-		setAttributes({ finalAnswer: '' });
+		setIsDeleting(true);
+		setTimeout(() => {
+			setIsDeleting(false);
+			setAttributes({ finalAnswer: '' });
+		}, 2000);
 	};
 	return (
 		<PanelBody title="4. Generate Content" initialOpen={false}>
 			<ButtonGroup>
 				<Button
-					icon="upload"
+					icon={loading ? 'update' : 'upload'}
 					variant="primary"
 					onClick={GenerateContent}
-					text="Generate"
+					text={loading ? 'Generating...' : 'Generate'}
+					disabled={loading}
 				/>
-				<Button
-					icon="trash"
-					variant="primary"
-					onClick={DeleteContent}
-					isDestructive
-					text="Delete"
-				/>
+				{isDeleting ? (
+					<Button icon="update" variant="primary" isBusy isDestructive>
+						Deleting...
+					</Button>
+				) : (
+					<Button
+						icon="trash"
+						variant="primary"
+						onClick={DeleteContent}
+						isDestructive
+						text="Delete"
+					/>
+				)}
 			</ButtonGroup>
 		</PanelBody>
 	);
