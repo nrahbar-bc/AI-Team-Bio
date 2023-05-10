@@ -1,28 +1,33 @@
 {
-	"name": "ai-team-bio",
-	"version": "0.1.0",
-	"description": "Team Biography Generator Powered By ChatGPT",
-	"author": "BC Hackathon Team 6",
-	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
-	"scripts": {
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
-	},
-	"devDependencies": {
-		"@wordpress/eslint-plugin": "^14.5.0",
-		"@wordpress/scripts": "^26.3.0",
-		"@wordpress/stylelint-config": "^21.15.0",
-		"prettier": "^2.8.8",
-		"stylelint": "^14.16.1"
-	},
-	"dependencies": {
-		"@wordpress/block-editor": "^12.0.0",
-		"react": "^18.2.0"
-	}
+  "name": "ai-team-bio",
+  "version": "0.1.0",
+  "description": "Team Biography Generator Powered By ChatGPT",
+  "author": "BC Hackathon Team 6",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start"
+  },
+  "files": [
+	"build/",
+    "AI-Team-Bio.png",
+    "ai-team-bio.php"
+  ],
+  "devDependencies": {
+    "@wordpress/eslint-plugin": "^14.5.0",
+    "@wordpress/scripts": "^26.3.0",
+    "@wordpress/stylelint-config": "^21.15.0",
+    "prettier": "^2.8.8",
+    "stylelint": "^14.16.1"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^12.0.0",
+    "react": "^18.2.0"
+  }
 }

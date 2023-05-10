@@ -14,17 +14,6 @@
 
 function bcBlocksAiTeamBioBlockInit()
 {
-	register_block_type_from_metadata(__DIR__ . '/build', [
-		'render_callback' => 'bcBlocksAiTeamBioBlockGenerate'
-	]);
+	register_block_type_from_metadata(__DIR__ . '/build');
 }
 add_action('init', 'bcBlocksAiTeamBioBlockInit');
-
-function bcBlocksAiTeamBioBlockGenerate($attributes)
-{
-	if (!empty($attributes['finalAnswer'])) {
-		return '<p>' . nl2br($attributes['finalAnswer']) .'</p>';
-	} else {
-		return '<div class="alert alert-danger" role="alert">Please set the parameters first and then generate the content.</div>';
-	}
-}
