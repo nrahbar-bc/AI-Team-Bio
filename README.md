@@ -1,16 +1,11 @@
-<br/>
 <p align="center">
+  <img src="AI-Team-Bio.png">
   <h3 align="center">AI Team Bio</h3>
 
   <p align="center">
     Team Biography Generator Powered By ChatGPT
     <br/>
     <br/>
-    <a href="https://github.com/nrahbar-bc/AI-Team-Bio"><strong>Explore the docs »</strong></a>
-    <br/>
-    <br/>
-    <a href="https://github.com/nrahbar-bc/AI-Team-Bio">View Demo</a>
-    .
     <a href="https://github.com/nrahbar-bc/AI-Team-Bio/issues">Report Bug</a>
     .
     <a href="https://github.com/nrahbar-bc/AI-Team-Bio/issues">Request Feature</a>
@@ -20,8 +15,6 @@
 
 
 ## About The Project
-
-![Screen Shot](images/screenshot.png)
 
 There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
 
@@ -65,7 +58,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/nrahbar-bc/A
 
 ## Authors
 
-* **BC Hackathon Team 6** - ** - [BC Hackathon Team 6](https://bettercollective.com) - **
+* **BC HACKATHON - Team Sixy**
 
 ## Acknowledgements
 
