@@ -33,12 +33,19 @@ export const getChatGPTContent = async (attributes) => {
 			const answer = await response.json();
 			return answer;
 		}
-		return [
-			__(
-				'We had an issue in getting the data, please push "Delete" and "Generate" again.',
-				'ai-team-bio'
-			),
-		];
+		return {
+			choices: [
+				{
+					text: 'Error ' + response.status + ': ',
+				},
+				{
+					text: __(
+						'We had an issue in getting the data, please push "Delete" and "Generate" again.',
+						'ai-team-bio'
+					),
+				},
+			],
+		};
 	} catch (error) {
 		return error;
 	}

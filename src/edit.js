@@ -25,8 +25,13 @@ const AIQuery = ({ attributes, setAttributes }) => {
 			{finalAnswer && (
 				<RichText
 					value={finalAnswer}
-					tagName="p"
-					allowedFormats={['core/bold', 'core/italic', 'core/link']}
+					tagName="div"
+					allowedFormats={[
+						'core/bold',
+						'core/italic',
+						'core/link',
+						'core/image',
+					]}
 					onChange={finalAnswerChange}
 				/>
 			)}
