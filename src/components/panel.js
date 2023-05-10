@@ -136,6 +136,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 
 	const GenerateContent = () => {
 		setLoading(true);
+		setIsDeleting(false);
 
 		const queries = [];
 		if (homeTeam)
@@ -171,6 +172,8 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 
 	const DeleteContent = () => {
 		setIsDeleting(true);
+		setLoading(false);
+
 		setTimeout(() => {
 			setIsDeleting(false);
 			setAttributes({ finalAnswer: '' });
@@ -191,7 +194,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 							? __('Generating…', 'ai-team-bio')
 							: __('Generate', 'ai-team-bio')
 					}
-					disabled={loading}
+					disabled={loading || isDeleting}
 					isBusy={loading}
 				/>
 				{isDeleting ? (
@@ -201,6 +204,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 						isBusy
 						isDestructive
 						text={__('Deleting…', 'ai-team-bio')}
+						disabled
 					/>
 				) : (
 					<Button
@@ -209,6 +213,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 						onClick={DeleteContent}
 						isDestructive
 						text={__('Delete', 'ai-team-bio')}
+						disabled={loading || isDeleting}
 					/>
 				)}
 			</ButtonGroup>
