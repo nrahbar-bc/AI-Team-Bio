@@ -1,14 +1,17 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { PanelOptions } from './components/panel';
 import './editor.scss';
 
-const AIQuery = ({ attributes }) => {
+const AIQuery = ({ attributes, setAttributes }) => {
 	const { finalQuery, finalAnswer } = attributes;
+	const finalAnswerChange = (newAnswer) => {
+		setAttributes({ finalAnswer: newAnswer });
+	};
 
 	return (
 		<>
-			{finalQuery && (
+			{finalQuery && !finalAnswer && (
 				<>
 					<h3>
 						{__(
@@ -16,10 +19,17 @@ const AIQuery = ({ attributes }) => {
 							'ai-team-bio'
 						)}
 					</h3>
-					<p>{finalQuery}</p>
+					<p>{finalQuery.join(' ')}</p>
 				</>
 			)}
-			{finalAnswer && <div>{finalAnswer}</div>}
+			{finalAnswer && (
+				<RichText
+					value={finalAnswer}
+					tagName="p"
+					allowedFormats={['core/bold', 'core/italic', 'core/link']}
+					onChange={finalAnswerChange}
+				/>
+			)}
 		</>
 	);
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { getChatGPTContent } from './api-chatGPT';
+import { getChatGPTContent, nl2br } from '../helpers/helpers';
 import {
 	Panel,
 	PanelBody,
@@ -21,15 +22,18 @@ const BlockSettings = ({ attributes, setAttributes }) => {
 		setAttributes({ awayTeam: newAway });
 	};
 	return (
-		<PanelBody title="1. Block Settings" initialOpen={false}>
-			<PanelRow>Teams Information</PanelRow>
+		<PanelBody
+			title={__('1. Block Settings', 'ai-team-bio')}
+			initialOpen={false}
+		>
+			<PanelRow>{__('Teams Information', 'ai-team-bio')}</PanelRow>
 			<TextControl
-				label="Home Team Name"
+				label={__('Home Team Name', 'ai-team-bio')}
 				value={homeTeam}
 				onChange={onHomeChange}
 			/>
 			<TextControl
-				label="Away Team Name"
+				label={__('Away Team Name', 'ai-team-bio')}
 				value={awayTeam}
 				onChange={onAwayChange}
 			/>
@@ -46,10 +50,16 @@ const ContentSettings = ({ attributes, setAttributes }) => {
 		setAttributes({ showInfographicContent: newInfographicContent });
 	};
 	return (
-		<PanelBody title="2. Content Settings" initialOpen={false}>
-			<PanelRow>Content Information</PanelRow>
+		<PanelBody
+			title={__('2. Content Settings', 'ai-team-bio')}
+			initialOpen={false}
+		>
+			<PanelRow>{__('Content Information', 'ai-team-bio')}</PanelRow>
 			<SelectControl
-				label="How many paragraph for the Biography"
+				label={__(
+					'How many paragraph for the Biography',
+					'ai-team-bio'
+				)}
 				options={[
 					{ label: '1', value: '1' },
 					{ label: '2', value: '2' },
@@ -88,15 +98,18 @@ const ExtraSettings = ({ attributes, setAttributes }) => {
 		setAttributes({ language: newLanguage });
 	};
 	return (
-		<PanelBody title="3. Extra Settings" initialOpen={false}>
-			<PanelRow>Extra Information</PanelRow>
+		<PanelBody
+			title={__('3. Extra Settings', 'ai-team-bio')}
+			initialOpen={false}
+		>
+			<PanelRow>{__('Extra Information', 'ai-team-bio')}</PanelRow>
 			<CheckboxControl
-				label="Show the head to head history"
+				label={__('Show the head to head history', 'ai-team-bio')}
 				checked={showHead2Head}
 				onChange={onShowHead2HeadChange}
 			/>
 			<SelectControl
-				label="Content language"
+				label={__('Content language', 'ai-team-bio')}
 				options={languages}
 				value={language}
 				onChange={onLanguageChange}
@@ -149,7 +162,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 		getChatGPTContent(attributes, setAttributes).then((answer) => {
 			let finalChoice = '';
 			answer.choices.forEach((choice) => {
-				finalChoice += choice.text;
+				finalChoice += nl2br(choice.text);
 			});
 			setAttributes({ finalAnswer: finalChoice });
 			setLoading(false);
@@ -164,26 +177,37 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 		}, 2000);
 	};
 	return (
-		<PanelBody title="4. Generate Content" initialOpen={false}>
+		<PanelBody
+			title={__('4. Generate Content', 'ai-team-bio')}
+			initialOpen={false}
+		>
 			<ButtonGroup>
 				<Button
 					icon={loading ? 'update' : 'upload'}
 					variant="primary"
 					onClick={GenerateContent}
-					text={loading ? 'Generating...' : 'Generate'}
+					text={
+						loading
+							? __('Generating…', 'ai-team-bio')
+							: __('Generate', 'ai-team-bio')
+					}
 					disabled={loading}
 				/>
 				{isDeleting ? (
-					<Button icon="update" variant="primary" isBusy isDestructive>
-						Deleting...
-					</Button>
+					<Button
+						icon="update"
+						variant="primary"
+						isBusy
+						isDestructive
+						text={__('Deleting…', 'ai-team-bio')}
+					/>
 				) : (
 					<Button
 						icon="trash"
 						variant="primary"
 						onClick={DeleteContent}
 						isDestructive
-						text="Delete"
+						text={__('Delete', 'ai-team-bio')}
 					/>
 				)}
 			</ButtonGroup>
