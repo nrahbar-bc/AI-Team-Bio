@@ -59,6 +59,26 @@ class AiTeamBioOption
         $sanitary_values = array();
         if (isset($input['chatgpt_api_key_0'])) {
             $sanitary_values['chatgpt_api_key_0'] = sanitize_text_field($input['chatgpt_api_key_0']);
+
+            // $headers = array(
+            //     'Content-Type: application/json',
+            //     'Authorization: Bearer ' . $sanitary_values['chatgpt_api_key_0'],
+            // );
+            // $fields = array(
+            //     'model' => 'text-davinci-003',
+            //     'messages' => ['{"message":"Say this is a test!"}'],
+            //     "temperature" => '0.7'
+            // );
+            // $ch = curl_init();
+            // curl_setopt($ch, CURLOPT_URL, "https://api.openai.com/v1/chat/completions");
+            // curl_setopt($ch, CURLOPT_POST, true);
+            // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+            // $result = curl_exec($ch);
+            // curl_close($ch);
+            // $result = json_decode($result);
+            // var_dump($result);
+            // die();
         }
         return $sanitary_values;
     }
@@ -76,4 +96,3 @@ class AiTeamBioOption
 if (is_admin()) {
     $ai_team_bio = new AITeamBioOption();
 }
-
