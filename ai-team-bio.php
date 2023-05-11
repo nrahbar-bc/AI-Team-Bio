@@ -12,8 +12,12 @@
  * Text Domain:       ai-team-bio
  */
 
+require dirname(__FILE__) . '/AiTeamBioOption.php';
+
 function bcBlocksAiTeamBioBlockInit()
 {
 	register_block_type_from_metadata(__DIR__ . '/build');
 }
 add_action('init', 'bcBlocksAiTeamBioBlockInit');
+		
+?>
