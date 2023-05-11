@@ -46,6 +46,19 @@ function save_api_key() {
 	}
 }
 add_action( 'admin_init', 'save_api_key' );
+
+function ai_team_bio_register_route() {
+	register_rest_route('ai-team-bio/v1', 'api-key', array(
+		'methods'  => 'GET',
+		'callback' => 'ai_team_bio_result'
+	));
+}
+
+function ai_team_bio_result($data) {
+	$api_key = get_option('chatgpt_api_key');
+	return $api_key;
+}
+
 add_action('rest_api_init', 'ai_team_bio_register_route');
 		
 ?>
