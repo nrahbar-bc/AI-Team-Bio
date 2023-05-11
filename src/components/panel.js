@@ -160,7 +160,7 @@ const GenerateSection = ({ attributes, setAttributes }) => {
 				`some head to head history in ${language} between "${homeTeam}" and "${awayTeam}".`
 			);
 		setAttributes({ finalQuery: queries });
-		getChatGPTContent(attributes, setAttributes).then((answer) => {
+		getChatGPTContent(queries).then((answer) => {
 			let finalChoice = '';
 			answer.choices.forEach((choice) => {
 				finalChoice += nl2br(choice.text);
