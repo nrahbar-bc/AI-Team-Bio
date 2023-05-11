@@ -11,14 +11,13 @@ export const nl2br = (str) => {
 	);
 };
 
-export const getChatGPTContent = async (finalQuery) => {
+export const getChatGPTContent = async (apiKey, finalQuery) => {
 	try {
 		const response = await fetch('https://api.openai.com/v1/completions', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization:
-					'Bearer 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',
+				Authorization: 'Bearer ' + apiKey,
 			},
 			body: JSON.stringify({
 				model: 'text-davinci-003',

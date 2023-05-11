@@ -76,8 +76,4 @@ class AiTeamBioOption
 if (is_admin()) {
     $ai_team_bio = new AITeamBioOption();
 }
-/*
-Retrieve this value with:
-$ai_team_bio_options = get_option( 'ai_team_bio_option_name' ); // Array of All Options
-$chatgpt_api_key_0 = $ai_team_bio_options['chatgpt_api_key_0']; // ChatGPT Api Key
- */
+

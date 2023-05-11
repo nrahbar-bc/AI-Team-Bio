@@ -17,7 +17,8 @@
   "files": [
     "build/",
     "AI-Team-Bio.png",
-    "ai-team-bio.php"
+    "ai-team-bio.php",
+    "AiTeamBioOption.php"
   ],
   "devDependencies": {
     "@wordpress/eslint-plugin": "^14.5.0",

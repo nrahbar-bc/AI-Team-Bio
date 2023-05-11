@@ -32,6 +32,9 @@
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "attributes": {
+    "apiKey": {
+      "type": "string"
+    },
     "homeTeam": {
       "type": "string"
     },

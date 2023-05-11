@@ -16,8 +16,43 @@ require dirname(__FILE__) . '/AiTeamBioOption.php';
 
 function bcBlocksAiTeamBioBlockInit()
 {
-	register_block_type_from_metadata(__DIR__ . '/build');
+	$aiTeamBioOptions = get_option('ai_team_bio_option_name');
+	$chatgptApiKey = $aiTeamBioOptions['chatgpt_api_key_0'];
+	register_block_type_from_metadata(__DIR__ . '/build', [
+		'attributes' => [
+			'apiKey' => [
+				'default' => $chatgptApiKey,
+				'type'    => 'string'
+			],
+			"homeTeam" => [
+				"type" => "string"
+			],
+			"awayTeam" => [
+				"type" => "string"
+			],
+			"paragraphCount" => [
+				"type" => "string",
+				"default" => "1"
+			],
+			"showInfographicContent" => [
+				"type" => "boolean",
+				"default" => false
+			],
+			"language" => [
+				"type" => "string",
+				"default" => "English"
+			],
+			"showHead2Head" => [
+				"type" => "boolean",
+				"default" => false
+			],
+			"finalQuery" => [
+				"type" => "array"
+			],
+			"finalAnswer" => [
+				"type" => "string"
+			]
+		],
+	]);
 }
 add_action('init', 'bcBlocksAiTeamBioBlockInit');
-		
-?>
